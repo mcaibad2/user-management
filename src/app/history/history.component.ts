@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HISTORY_ITEMS } from '../mock-historyItems';
 
 @Component({
   selector: 'app-history',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  historyItems = HISTORY_ITEMS;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
 }

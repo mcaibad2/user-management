@@ -1,3 +1,37 @@
-<p>
-  users works!
-</p>
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4>Users</h4>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Avatar</th>
+          <th>Age</th>
+          <th>Country</th>
+          <th>Number of apps</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users" routerLink="/users/{{user.id}}">
+          <td>{{user.name}}</td>
+          <td><img [src]="user.avatar" [alt]="user.avatar" height="50px"/></td>
+          <td>{{user.age}}</td>
+          <td>{{user.country}}</td>
+          <td>{{user.numberOfApps}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <app-history></app-history>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+
+
+
+
