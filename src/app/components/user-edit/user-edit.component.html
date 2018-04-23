@@ -1,5 +1,18 @@
-<h2>{{ user.name }} Details</h2>
-<div><span>id: </span>{{user.id}}</div>
-<div><span>name: </span>{{user.name}}</div>
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4>User</h4>
+      <h2>{{ user.name }} Details</h2>
+      <div><span>id: </span>{{user.id}}</div>
+      <div><span>name: </span>{{user.name}}</div>
+    </div>
+    <div class="col-sm-4">
+      <app-history></app-history>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
 
 

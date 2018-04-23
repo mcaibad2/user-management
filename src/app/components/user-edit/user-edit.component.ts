@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {USERS} from '../../mock-data/mock-users';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { USERS } from '../../mock-data/mock-users';
+import { UserService } from '../../services/user.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-user-edit',
@@ -9,8 +11,9 @@ import {USERS} from '../../mock-data/mock-users';
 })
 export class UserEditComponent implements OnInit {
   users = USERS;
+  user: User;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit() {
     this.getUser();
@@ -18,8 +21,6 @@ export class UserEditComponent implements OnInit {
 
   getUser(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.users.find(user => {
-      return user.id === id;
-    });
+    this.userService.getUser(id).subscribe(user => this.user = user);
   }
 }

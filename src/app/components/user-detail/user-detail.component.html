@@ -1,3 +1,32 @@
-<p>
-  user-detail works!
-</p>
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4><span class="glyphicon glyphicon-chevron-left" routerLink="/users"></span>{{ user.name }}</h4>
+      <div class="form-group">
+        <img [src]="user.avatar" alt="user.avatar" id="avatar" width="100">
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" [value]="user.name">
+      </div>
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <input type="text" class="form-control" id="country" [value]="user.country">
+      </div>
+      <div class="form-group">
+        <label for="country">Age:</label>
+        <input type="text" class="form-control" id="age" [value]="user.age">
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-default">Remove User</button>
+        <button type="submit" class="btn btn-default" routerLink="/users/">Edit User</button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <app-history></app-history>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
