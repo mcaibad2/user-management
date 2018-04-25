@@ -13,6 +13,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserService } from './services/user.service';
 import { HistoryService } from './services/history.service';
 import { AppRoutingModule } from './/app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './/app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     UserService,

@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  text = 'Powered by wappier ©2010-2018';
+  text = 'Powered by wappier ©2018';
 
   constructor() {
   }
