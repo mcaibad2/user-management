@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
-      <h4><span class="glyphicon glyphicon-chevron-left" routerLink="/users"></span>{{ user.name }}</h4>
+      <h4><span class="glyphicon glyphicon-chevron-left" (click)="goBack()"></span>{{ user.name }}</h4>
       <div class="form-group">
         <img [src]="user.avatar" alt="user.avatar" id="avatar" width="100">
       </div>
@@ -15,8 +15,8 @@
         <input type="text" class="form-control" id="country" [value]="user.country">
       </div>
       <div class="form-group">
-        <label for="country">Age:</label>
-        <input type="text" class="form-control" id="age" [value]="user.age">
+        <label for="country">Birthday:</label>
+        <input type="text" class="form-control" id="age" [value]="user.birthday">
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-default">Remove User</button>

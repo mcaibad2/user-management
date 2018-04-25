@@ -14,12 +14,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of users" routerLink="/users/{{user.id}}">
+        <tr *ngFor="let user of users" routerLink="/user-detail/{{user._id}}">
           <td>{{user.name}}</td>
           <td><img [src]="user.avatar" [alt]="user.avatar" height="50px"/></td>
-          <td>{{user.age}}</td>
+          <td>{{user.birthday}}</td>
           <td>{{user.country}}</td>
-          <td>{{user.numberOfApps}}</td>
+          <td>{{user.appsCount}}</td>
         </tr>
         </tbody>
       </table>

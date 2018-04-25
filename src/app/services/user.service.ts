@@ -20,15 +20,15 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  // getUsers(): Observable<User[]> {
-  //   return of(USERS);
-  // }
-
-  getUsers(page) {
-    return this.http.get('http://lab.wappier.com/user/' + page, options);
+  getUsers(page): Observable<User[]> {
+    return of(USERS);
   }
 
+  // getUsers(page) {
+  //   return this.http.get('http://lab.wappier.com/user/' + page, options);
+  // }
+
   getUser(id: number): Observable<User> {
-    return of(USERS.find(user => user.id === id));
+    return of(USERS.find(user => user._id === id));
   }
 }

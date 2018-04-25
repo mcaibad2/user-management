@@ -1,8 +1,8 @@
 export class User {
-  id: number;
+  _id: number;
   name: string;
   avatar: string;
-  age: number;
+  birthday: string;
   country: string;
-  numberOfApps: number;
+  appsCount: number;
 }
