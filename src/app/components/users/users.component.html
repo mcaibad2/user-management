@@ -23,11 +23,18 @@
         </tr>
         </tbody>
       </table>
-      <ul class="pagination">
-        <li><a href="#" routerLink="/users/1">1</a></li>
-        <li><a href="#" routerLink="/users/2">2</a></li>
-        <li><a href="#" routerLink="/users/3">3</a></li>
-      </ul>
+      <div class="row">
+        <div class="col-lg-6">
+          <ul class="pagination">
+            <li><a href="#" routerLink="/users/1">1</a></li>
+            <li><a href="#" routerLink="/users/2">2</a></li>
+            <li><a href="#" routerLink="/users/3">3</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-6 text-right">
+          <button type="button" class="btn btn-primary btn-md" routerLink="/user-add">Add User</button>
+        </div>
+      </div>
     </div>
     <div class="col-lg-4">
       <app-history></app-history>

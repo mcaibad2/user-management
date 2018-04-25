@@ -3,11 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {UsersComponent} from './components/users/users.component';
 import {UserDetailComponent} from './components/user-detail/user-detail.component';
+import {UserAddComponent} from './components/user-add/user-add.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/users/1', pathMatch: 'full'},
   {path: 'users/:page', component: UsersComponent},
   {path: 'user-detail/:id', component: UserDetailComponent},
+  {path: 'user-add', component: UserAddComponent}
 ];
 
 @NgModule({

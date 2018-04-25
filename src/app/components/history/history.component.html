@@ -1,19 +1,12 @@
-<!--<table class="table table-bordered">-->
-  <!--<thead>-->
-  <!--<tr>-->
-    <!--<th>Name</th>-->
-    <!--<th>Avatar</th>-->
-  <!--</tr>-->
-  <!--</thead>-->
-  <!--<tbody>-->
-  <!--<tr *ngFor="let historyItem of historyItems">-->
-    <!--<td>{{historyItem.text}}</td>-->
-    <!--<td>{{historyItem.date}}</td>-->
-  <!--</tr>-->
-  <!--</tbody>-->
-<!--</table>-->
 <h4>History</h4>
-<div *ngFor="let historyItem of historyItems" class="well">
-  <td>{{historyItem.text}}</td>
-  <td>{{historyItem.date}}</td>
+<div class="history-container">
+  <div *ngFor="let historyItem of historyItems" class="well">
+    <div class="text-right">
+      {{historyItem.date | date :'short'}}
+    </div>
+    <div>
+      {{historyItem.text}}
+    </div>
+  </div>
 </div>
+

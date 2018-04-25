@@ -1,5 +1,5 @@
 export class HistoryItem {
-  id: number;
-  text: string;
-  date: string;
+  constructor(
+    public text: string,
+    public date: Date) {}
 }

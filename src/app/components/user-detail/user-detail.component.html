@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
-      <h4><span class="glyphicon glyphicon-chevron-left" (click)="goBack()"></span>{{ user.name }}</h4>
+      <h4><span class="glyphicon glyphicon-chevron-left" (click)="goBack()"></span>{{user.name}}</h4>
       <div class="form-group">
         <img [src]="user.avatar" alt="user.avatar" id="avatar" width="100">
       </div>
@@ -19,8 +19,8 @@
         <input type="text" class="form-control" id="age" [value]="user.birthday">
       </div>
       <div class="text-right">
-        <button type="submit" class="btn btn-default">Remove User</button>
-        <button type="submit" class="btn btn-default" routerLink="/users/">Edit User</button>
+        <button type="submit" class="btn btn-primary btn-md" (click)="deleteUser()">Delete User</button>
+        <button type="submit" class="btn btn-primary btn-md">Edit User</button>
       </div>
     </div>
     <div class="col-sm-4">

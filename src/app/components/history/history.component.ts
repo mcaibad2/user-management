@@ -19,6 +19,6 @@ export class HistoryComponent implements OnInit {
   }
 
   getHistoryItems(): void {
-    this.historyService.getHistoryItems().subscribe(historyItems => this.historyItems = historyItems);
+    this.historyService.read().subscribe(historyItems => this.historyItems = historyItems);
   }
 }
