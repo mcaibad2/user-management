@@ -1,5 +1,9 @@
 .history-container {
   max-height: 500px;
-  overflow: auto;
-  padding: 1em 10px
+  overflow: auto
+}
+
+.well {
+  margin: .5em 0px;
+  padding: .5em 10px
 }

@@ -13,7 +13,8 @@ export class UsersComponent implements OnInit {
   users: User[];
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.getUsers(params['page']));
+    this.getUsers();
+    // this.route.params.subscribe(params => this.getUsers(params['page']));
   }
 
   ngOnInit() {
@@ -23,10 +24,11 @@ export class UsersComponent implements OnInit {
     this.selectedUser = user;
   }
 
-  getUsers(page) {
-    this.userService.readUsers(page).subscribe(
+  getUsers() {
+    this.userService.readUsers().subscribe(
       data => {
-        this.users = data;
+        this.users = data['data'];
+        this.userService.setUsers(data['data']);
       },
       err => {
         console.log(err);

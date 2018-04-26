@@ -11,18 +11,18 @@ import {User} from '../../model/user';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  private user: User;
-  private id: number;
+  user: User;
+  id: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private location: Location) {
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
     this.getUser();
   }
 
   getUser(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
     this.userService.readUser(this.id).subscribe(user => this.user = user);
   }
 
@@ -32,6 +32,6 @@ export class UserDetailComponent implements OnInit {
 
   deleteUser() {
     this.userService.delete(this.id);
-    this.router.navigate(['/users/1']);
+    this.router.navigate(['/users']);
   }
 }
