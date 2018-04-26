@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
+
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-user-add',
@@ -10,6 +12,8 @@ import {Router} from '@angular/router';
 })
 export class UserAddComponent implements OnInit {
   fileToUpload: File = null;
+  user: Object = {};
+  avatar: Object = {};
 
   constructor(private userService: UserService, private router: Router, private location: Location) {
   }
@@ -17,15 +21,32 @@ export class UserAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  createUser(user: any) {
-    this.userService.createUser(user, this.fileToUpload).subscribe(
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.avatar = {
+          filename: file.name,
+          filetype: file.type,
+          value: reader.result.split(',')[1]
+        };
+      };
+    }
+  }
+
+  submitForm(user: User) {
+    console.log(user);
+    user.avatar = this.avatar;
+    this.userService.createUser(user).subscribe(
       data => {
         console.log(data);
+        this.router.navigate(['/users']);
       },
       err => {
         console.log(err);
       });
-    this.router.navigate(['/users']);
   }
 
   goBack() {

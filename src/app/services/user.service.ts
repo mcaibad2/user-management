@@ -23,13 +23,10 @@ export class UserService {
   constructor(private http: HttpClient, private historyService: HistoryService) {
   }
 
-  createUser(user: User, fileToUpload: File) {
+  createUser(user: User) {
     console.log(`Created user with name: ${user.name}`);
     this.historyService.create(new HistoryItem(`Created user with name: ${user.name}`, new Date()));
-    const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
-    formData.append('data', JSON.stringify(user));
-    return this.http.post('http://lab.wappier.com/user/', formData, options);
+    return this.http.post('http://lab.wappier.com/user', user, options);
   }
 
   // readUsers(): Observable<User[]> {

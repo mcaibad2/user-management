@@ -3,33 +3,61 @@
   <div class="row">
     <div class="col-lg-8">
       <h4><span class="glyphicon glyphicon-chevron-left" (click)="goBack()"></span>Add User</h4>
-      <form #form="ngForm" (ngSubmit)="createUser(form.value)">
+      <form class="form-horizontal" #userForm="ngForm" (ngSubmit)="submitForm(userForm.value)" novalidate>
         <div class="form-group">
-          <label>Id:</label>
-          <input type="text" class="form-control" name="id" ngModel>
+          <label class="control-label col-sm-2" for="name">Name:</label>
+          <div class="col-sm-10">
+            <input id="name"
+                   type="text"
+                   #name="ngModel"
+                   minlength="5"
+                   maxlength="10"
+                   class="form-control"
+                   required
+                   placeholder="Enter name"
+                   name="name"
+                   ngModel>
+          </div>
         </div>
         <div class="form-group">
-          <label>Name:</label>
-          <input class="form-control" type="text" name="name" ngModel>
+          <label class="control-label col-sm-2" for="countryCode">Country code:</label>
+          <div class="col-sm-10">
+            <input id="countryCode"
+                   type="text"
+                   class="form-control"
+                   placeholder="Enter country code e.g. GR"
+                   name="countryCode"
+                   ngModel>
+          </div>
         </div>
         <div class="form-group">
-          <label for="avatar">Avatar:</label>
-          <input type="file" id="avatar" name="avatar" (change)="handleFileInput($event.target.files)" ngModel="">
+          <label class="control-label col-sm-2" for="birthday">Birthday:</label>
+          <div class="col-sm-10">
+            <input id="birthday"
+                   type="date"
+                   class="form-control"
+                   placeholder="Enter birthday"
+                   name="birthday"
+                   ngModel>
+          </div>
         </div>
         <div class="form-group">
-          <label>Birthday:</label>
-          <input type="text" class="form-control" name="birthday" ngModel>
+          <label class="control-label col-sm-2" for="birthday">Avatar:</label>
+          <div class="col-sm-10">
+            <!--<input id="avatar"-->
+                   <!--type="file"-->
+                   <!--name="avatar"-->
+                   <!--ngModel>-->
+            <input type="file"
+                   id="avatar"
+                   (change)="onFileChange($event)"
+                   #fileInput>
+          </div>
         </div>
         <div class="form-group">
-          <label>Country:</label>
-          <input type="text" class="form-control" name="country" ngModel>
-        </div>
-        <div class="form-group">
-          <label>Number of applications:</label>
-          <input type="text" class="form-control" name="appsCount" ngModel>
-        </div>
-        <div class="text-right">
-          <button type="submit" class="btn btn-primary btn-md">Submit</button>
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </div>
       </form>
     </div>
