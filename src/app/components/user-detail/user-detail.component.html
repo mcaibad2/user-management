@@ -10,15 +10,15 @@
           </div>
           <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" [value]="user.name">
+            <input type="text" class="form-control" id="name" [value]="user.name" disabled="true">
           </div>
           <div class="form-group">
             <label for="country">Country:</label>
-            <input type="text" class="form-control" id="country" [value]="user.country">
+            <input type="text" class="form-control" id="country" [value]="user.country" disabled="true">
           </div>
           <div class="form-group">
-            <label for="country">Birthday:</label>
-            <input type="text" class="form-control" id="age" [value]="user.birthday">
+            <label for="age">Age:</label>
+            <input type="text" class="form-control" id="age" value="{{user.birthday | age}}" disabled="true">
           </div>
         </div>
         <div class="col border-left">
@@ -30,17 +30,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>John</td>
-              <td>Doe</td>
-            </tr>
-            <tr>
-              <td>Mary</td>
-              <td>Moe</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>Dooley</td>
+            <tr *ngFor="let app of user.apps">
+              <td><img src="{{'http://lab.wappier.com/' + app.avatar}}" alt="{{'http://lab.wappier.com/' + app.avatar}}" height="50px"/></td>
+              <td>{{app.name}}</td>
             </tr>
             </tbody>
           </table>

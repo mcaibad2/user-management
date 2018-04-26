@@ -10,11 +10,15 @@ import {UsersComponent} from './components/users/users.component';
 import {UserDetailComponent} from './components/user-detail/user-detail.component';
 import {UserEditComponent} from './components/user-edit/user-edit.component';
 import {UserAddComponent} from './components/user-add/user-add.component';
+
 import {UserService} from './services/user.service';
 import {HistoryService} from './services/history.service';
+
 import {AppRoutingModule} from './/app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+
+import {AgePipe} from './pipes/agePipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import {FormsModule} from '@angular/forms';
     UsersComponent,
     UserDetailComponent,
     UserEditComponent,
-    UserAddComponent
+    UserAddComponent,
+    AgePipe
   ],
   imports: [
     BrowserModule,

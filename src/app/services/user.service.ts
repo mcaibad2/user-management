@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {User} from '../model/user';
-import {USERS} from '../mock-data/mock-users';
 
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
@@ -24,10 +23,13 @@ export class UserService {
   constructor(private http: HttpClient, private historyService: HistoryService) {
   }
 
-  createUser(user: User) {
+  createUser(user: User, fileToUpload: File) {
     console.log(`Created user with name: ${user.name}`);
     this.historyService.create(new HistoryItem(`Created user with name: ${user.name}`, new Date()));
-    this.users.push(user);
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    formData.append('data', JSON.stringify(user));
+    return this.http.post('http://lab.wappier.com/user/', formData, options);
   }
 
   // readUsers(): Observable<User[]> {
@@ -60,9 +62,6 @@ export class UserService {
   delete(id: string) {
     console.log(`Delete user with id: ${id}`);
     this.historyService.create(new HistoryItem(`Deleted user with id: ${id}`, new Date()));
-    this.users = this.users.filter(obj => {
-      return obj._id !== id;
-    });
-    console.log('Test');
+    return this.http.delete(`http://lab.wappier.com/user/${id}`, options);
   }
 }

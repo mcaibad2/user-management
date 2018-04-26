@@ -5,4 +5,9 @@ export class User {
   birthday: string;
   country: string;
   appsCount: number;
+  apps: [{
+    _id: String,
+    name: String,
+    avatar: String
+  }];
 }

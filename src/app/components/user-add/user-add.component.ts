@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-  submitted = false;
+  fileToUpload: File = null;
 
   constructor(private userService: UserService, private router: Router, private location: Location) {
   }
@@ -17,16 +17,22 @@ export class UserAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  createUser(value: any) {
-    this.userService.createUser(value);
+  createUser(user: any) {
+    this.userService.createUser(user, this.fileToUpload).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log(err);
+      });
     this.router.navigate(['/users']);
-  }
-
-  onSubmit() {
-    this.submitted = true;
   }
 
   goBack() {
     this.location.back();
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
   }
 }
