@@ -21,25 +21,13 @@ export class UserAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  onFileChange(event) {
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.avatar = {
-          filename: file.name,
-          filetype: file.type,
-          value: reader.result.split(',')[1]
-        };
-      };
-    }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
   }
 
   submitForm(user: User) {
     console.log(user);
-    user.avatar = this.avatar;
-    this.userService.createUser(user).subscribe(
+    this.userService.createUser(user, this.fileToUpload).subscribe(
       data => {
         console.log(data);
         this.router.navigate(['/users']);
@@ -51,9 +39,5 @@ export class UserAddComponent implements OnInit {
 
   goBack() {
     this.location.back();
-  }
-
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
   }
 }

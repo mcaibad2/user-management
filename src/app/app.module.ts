@@ -19,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import {AgePipe} from './pipes/agePipe';
+import {AvatarPipe} from './pipes/avatarPipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {AgePipe} from './pipes/agePipe';
     UserDetailComponent,
     UserEditComponent,
     UserAddComponent,
-    AgePipe
+    AgePipe,
+    AvatarPipe
   ],
   imports: [
     BrowserModule,

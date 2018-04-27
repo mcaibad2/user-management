@@ -44,13 +44,9 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="birthday">Avatar:</label>
           <div class="col-sm-10">
-            <!--<input id="avatar"-->
-                   <!--type="file"-->
-                   <!--name="avatar"-->
-                   <!--ngModel>-->
             <input type="file"
                    id="avatar"
-                   (change)="onFileChange($event)"
+                   (change)="handleFileInput($event.target.files)"
                    #fileInput>
           </div>
         </div>
