@@ -12,3 +12,8 @@
   flex: 1;
   padding: 16px;
 }
+
+img.avatar-large {
+  width: 100px;
+  height: 100px;
+}
