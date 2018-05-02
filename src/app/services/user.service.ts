@@ -16,17 +16,25 @@ export class UserService {
   constructor(private http: HttpClient, private historyService: HistoryService) {
   }
 
-  createUser(user: User, file: File) {
+  createUser(user: User, avatar: File, icons: File[]) {
     console.log(`Created user with name: ${user.name}`);
     this.historyService.create(new HistoryItem(`Created user with name: ${user.name}`, new Date()));
     const formData = new FormData();
     formData.append('name', user.name);
     formData.append('birthday', user.birthday);
     formData.append('country', user.country);
-    formData.append('avatar', file, file.name);
+    formData.append('avatar', avatar, avatar.name);
+    const appNames = [];
+    for (let i = 0; i < icons.length; i++) {
+      formData.append('icons', icons[i], icons[i]['name']);
+      appNames.push(user[`name${i}`]);
+    }
+    for (let i = 0; i < appNames.length; i++) {
+      formData.append('apps', appNames[i]);
+    }
     return this.http.post('http://lab.wappier.com/user', formData, {
       headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'multipart/form-data',
         'api-token': '27140e3a-0e81-4a96-8e91-162cfb69cf69'
       })
     });

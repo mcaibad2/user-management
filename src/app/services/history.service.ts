@@ -9,7 +9,7 @@ export class HistoryService {
   historyItems: HistoryItem[] = [];
 
   constructor() {
-    this.historyItems.push(new HistoryItem('TYext', new Date()));
+    // this.historyItems.push(new HistoryItem('TYext', new Date()));
   }
 
   create(historyItem: HistoryItem) {

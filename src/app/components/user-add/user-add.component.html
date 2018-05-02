@@ -51,6 +51,26 @@
           </div>
         </div>
         <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button type="button" (click)="addApplication()">Add application</button>
+          </div>
+        </div>
+        <div class="form-group" *ngFor="let word2 of words2; let i=index" >
+          <div class="col-sm-10 col-sm-offset-2">
+            <input id="app{{i}}"
+                   type="text"
+                   class="col-sm-6"
+                   placeholder="Enter name"
+                   name="name{{i}}"
+                   ngModel>
+            <input type="file"
+                   id="icon{{i}}"
+                   class="col-sm-6"
+                   (change)="handleIcons($event.target.files)"
+                   #fileInput>
+          </div>
+        </div>
+        <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>

@@ -10,4 +10,5 @@ export class User {
     name: String,
     avatar: String
   }];
+  appNames: Array<string>;
 }

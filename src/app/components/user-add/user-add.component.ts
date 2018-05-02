@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 import {UserService} from '../../services/user.service';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
@@ -11,9 +13,9 @@ import {User} from '../../model/user';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-  fileToUpload: File = null;
-  user: Object = {};
-  avatar: Object = {};
+  avatar: File;
+  icons: Array<File> = [];
+  words2 = [];
 
   constructor(private userService: UserService, private router: Router, private location: Location) {
   }
@@ -22,12 +24,16 @@ export class UserAddComponent implements OnInit {
   }
 
   handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+    this.avatar = files.item(0);
+  }
+
+  handleIcons(files: FileList) {
+    this.icons.push(files.item(0));
   }
 
   submitForm(user: User) {
     console.log(user);
-    this.userService.createUser(user, this.fileToUpload).subscribe(
+    this.userService.createUser(user, this.avatar, this.icons).subscribe(
       data => {
         console.log(data);
         this.router.navigate(['/users']);
@@ -39,5 +45,9 @@ export class UserAddComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  addApplication() {
+    this.words2.push({value: 'gsre'});
   }
 }
