@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 import {Injectable} from '@angular/core';
 import {HistoryItem} from '../model/historyItem';
 
@@ -17,7 +19,9 @@ export class HistoryService {
   }
 
   read(): Observable<HistoryItem[]> {
-    return of(this.historyItems);
+    return of(_.sortBy(this.historyItems, obj => {
+      return -(obj.date.getTime());
+    }));
   }
 
   clear() {
