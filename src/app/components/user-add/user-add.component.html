@@ -46,7 +46,7 @@
                      class="form-control"
                      id="birthday"
                      required
-                     [(ngModel)]="user.birthday"
+                     [ngModel]="user.birthday | date:'yyyy-MM-dd'"
                      name="birthday"
                      #name="ngModel">
             </div>

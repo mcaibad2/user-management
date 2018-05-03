@@ -37,12 +37,12 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="age">Age:</label>
+              <label for="age">Birthday:</label>
               <input id="age"
                      type="date"
                      class="form-control"
                      name="birthday"
-                     [(ngModel)]="user.birthday"
+                     [ngModel]="user.birthday | date:'yyyy-MM-dd'"
                      #birthday="ngModel">
             </div>
           </div>
