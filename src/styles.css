@@ -1,14 +1,32 @@
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 
+.glyphicon {
+  cursor: pointer;
+}
+
+
 .border-right {
   border-right: 1px solid #ddd;
 }
+
 .borders {
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   margin: -1px;
 }
+
 .border-left {
   border-left: 1px solid #ddd;
 }
+
+img.avatar-large {
+  width: 100px;
+  height: 100px;
+}
+
+img.avatar-small {
+  width: 50px;
+  height: 50px;
+}
+
 

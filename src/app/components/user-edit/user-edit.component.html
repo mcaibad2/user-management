@@ -1,18 +1,111 @@
 <app-header></app-header>
 <div class="container">
   <div class="row">
-    <div class="col-sm-8">
-      <h4>User</h4>
-      <h2>{{ user.name }} Details</h2>
-      <div><span>id: </span>{{user.id}}</div>
-      <div><span>name: </span>{{user.name}}</div>
+    <div class="col-lg-8">
+      <h4><span class="glyphicon glyphicon-chevron-left"></span>{{user.name}}</h4>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="name">Avatar:</label>
+              <br/>
+              <img [src]="user.avatar | avatar" [alt]="user.avatar | avatar" class="avatar-large"/>
+              <br/>
+              <br/>
+              <input id="avatar"
+                     type="file"
+                     name="avatar"
+                     [(ngModel)]="user.avatar"
+                     (change)="handleFileInput($event.target.files)"
+                     required
+                     #avatar="ngModel">
+            </div>
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input id="name"
+                     type="text"
+                     class="form-control"
+                     name="name"
+                     [(ngModel)]="user.name"
+                     required
+                     #name="ngModel">
+            </div>
+            <div class="form-group">
+              <label for="country">Country:</label>
+              <input id="country"
+                     type="text"
+                     class="form-control"
+                     name="country"
+                     [(ngModel)]="user.country"
+                     required
+                     #country="ngModel">
+            </div>
+            <div class="form-group">
+              <label for="age">Age:</label>
+              <input id="age"
+                     type="date"
+                     class="form-control"
+                     name="birthday"
+                     [(ngModel)]="user.birthday"
+                     required
+                     #birthday="ngModel">
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th>Icon</th>
+                <th>Name</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="text-center">
+                  <span class="glyphicon glyphicon glyphicon-plus-sign" (click)="addApp()"></span>
+                </td>
+              </tr>
+              <tr *ngFor="let app of user.apps; let i = index">
+                <td>
+                  <img ng-if="app.avatar" [src]="app.avatar|avatar" [alt]="app.avatar|avatar" class="avatar-small"/>
+                  <br />
+                  <br />
+                  <input type="file"
+                         name="avatar{{i}}"
+                         [(ngModel)]="user.avatar"
+                         (change)="handleIconInput($event.target.files)"
+                         required
+                         #avatar{{i}}="ngModel">
+                </td>
+                <td>
+                  <input id="name{{i}}"
+                         type="text"
+                         class="form-control"
+                         name="name{{i}}"
+                         [(ngModel)]="app.name"
+                         required
+                         width="150px"
+                         #name{{i}}="ngModel">
+                </td>
+                <td class="text-center">
+                  <span class="glyphicon glyphicon-trash" (click)="removeApp(i)"></span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary btn-md">Submit</button>
+        </div>
+      </form>
     </div>
-    <div class="col-sm-4">
+    <div class="col-lg-4">
       <app-history></app-history>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
-
-
-

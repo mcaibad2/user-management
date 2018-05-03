@@ -15,7 +15,7 @@ import {User} from '../../model/user';
 export class UserAddComponent implements OnInit {
   avatar: File;
   icons: Array<File> = [];
-  words2 = [];
+  // words2 = [];
 
   constructor(private userService: UserService, private router: Router, private location: Location) {
   }
@@ -47,7 +47,7 @@ export class UserAddComponent implements OnInit {
     this.location.back();
   }
 
-  addApplication() {
-    this.words2.push({value: 'gsre'});
-  }
+  // addApplication() {
+  //   this.words2.push({value: 'gsre'});
+  // }
 }

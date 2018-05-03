@@ -3,10 +3,10 @@
   margin-right: 10px;
 }
 
-input.ng-valid {
-  border-left: 10px solid green
-}
+/*input.ng-valid {*/
+  /*border-left: 10px solid green*/
+/*}*/
 
-input.ng-invalid {
-  border-left: 10px solid red
-}
+/*input.ng-invalid {*/
+  /*border-left: 10px solid red*/
+/*}*/
