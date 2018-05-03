@@ -27,17 +27,14 @@ export class UserService {
     formData.append('birthday', user.birthday);
     formData.append('country', user.country);
     formData.append('avatar', avatar, avatar.name);
-    const appNames = [];
     for (let i = 0; i < icons.length; i++) {
       formData.append('icons', icons[i], icons[i]['name']);
-      appNames.push(user[`name${i}`]);
     }
-    for (let i = 0; i < appNames.length; i++) {
-      formData.append('apps', appNames[i]);
+    for (let i = 0; i < user.apps.length; i++) {
+      formData.append('apps', user.apps[i].name);
     }
     return this.http.post('http://lab.wappier.com/user', formData, {
       headers: new HttpHeaders({
-        // 'Content-Type': 'multipart/form-data',
         'api-token': '27140e3a-0e81-4a96-8e91-162cfb69cf69'
       })
     });

@@ -23,7 +23,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   getUser(): void {
-    this.userService.readUser(this.id).subscribe(user => this.user = user);
+    this.userService.readUser(this.id).subscribe(user => {
+      this.user = user;
+    });
   }
 
   goBack() {

@@ -6,8 +6,8 @@ export class User {
   country: string;
   appsCount: number;
   apps: [{
-    _id: String,
-    name: String,
-    avatar: String
+    _id: string,
+    name: string,
+    avatar: string
   }];
 }

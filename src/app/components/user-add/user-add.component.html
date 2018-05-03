@@ -78,11 +78,11 @@
                 <input id="name{{i}}"
                        type="text"
                        class="form-control"
-                       name="name{{i}}"
+                       name="app{{i}}"
                        [(ngModel)]="app.name"
                        required
                        width="150px"
-                       #name{{i}}="ngModel">
+                       #app{{i}}="ngModel">
               </td>
               <td class="text-center">
                 <span class="glyphicon glyphicon-trash" (click)="removeApp(i)"></span>
