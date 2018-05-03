@@ -41,13 +41,6 @@ export class UserService {
     });
   }
 
-  // readUsers(): Observable<User[]> {
-  //   console.log(`Get users`);
-  //   this.historyService.create(new HistoryItem(`Got users`, new Date()));
-  //   this.users = USERS;
-  //   return of(this.users);
-  // }
-
   setUsers(users: User[]) {
     this.users = users;
   }
@@ -78,16 +71,16 @@ export class UserService {
     if (avatar) {
       formData.append('avatar', avatar, avatar.name);
     }
-    for (let i = 0; i < user.apps.length; i++) {
-      const app = user.apps[i];
-      if (icons.has(app._id)) {
-        const file = icons.get(app._id);
-        formData.append('icons', file, file.name);
-      } else {
-        formData.append('icons', app.avatar);
-      }
-      formData.append('apps', app.name);
-    }
+    // for (let i = 0; i < user.apps.length; i++) {
+    //   const app = user.apps[i];
+    //   if (icons.has(app._id)) {
+    //     const file = icons.get(app._id);
+    //     formData.append('icons', file, file.name);
+    //   } else {
+    //     formData.append('icons', app.avatar);
+    //   }
+    //   formData.append('apps', app.name);
+    // }
     return this.http.put(`http://lab.wappier.com/user/${user._id}`, formData, {
       headers: new HttpHeaders({
         'api-token': '27140e3a-0e81-4a96-8e91-162cfb69cf69'

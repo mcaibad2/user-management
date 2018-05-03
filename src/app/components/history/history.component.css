@@ -4,6 +4,10 @@
 }
 
 .well {
-  margin: .5em 0px;
+  margin: 0px 0px .5em 0px;
   padding: .5em 10px
+}
+
+.text {
+  margin-top: 10px;
 }

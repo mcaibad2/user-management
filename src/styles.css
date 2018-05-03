@@ -18,6 +18,10 @@
   border-left: 1px solid #ddd;
 }
 
+input[type="file"] {
+  overflow: hidden;
+}
+
 img.avatar-large {
   width: 100px;
   height: 100px;
@@ -26,6 +30,18 @@ img.avatar-large {
 img.avatar-small {
   width: 50px;
   height: 50px;
+}
+
+table td {
+  vertical-align: middle !important;
+}
+
+table td.centered {
+  text-align: center;
+}
+
+td.actions span {
+  margin: 0 5px
 }
 
 .ng-valid[required], .ng-valid.required  {

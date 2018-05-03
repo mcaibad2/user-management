@@ -8,6 +8,7 @@ export class User {
   apps: [{
     _id: string,
     name: string,
-    avatar: string
+    avatar: string,
+    editable: boolean
   }];
 }

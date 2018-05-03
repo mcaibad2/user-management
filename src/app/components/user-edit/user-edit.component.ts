@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {User} from '../../model/user';
 import {COUNTRIES} from '../../common/countries';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,7 +16,10 @@ export class UserEditComponent implements OnInit {
   countries = COUNTRIES;
   icons = new Map<string, File>();
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private userService: UserService,
+              private router: Router,
+              private location: Location) {
     const id = this.route.snapshot.paramMap.get('id');
     this.getUser(id);
   }
@@ -24,7 +28,9 @@ export class UserEditComponent implements OnInit {
   }
 
   getUser(id): void {
-    this.userService.readUser(id).subscribe(user => this.user = user);
+    this.userService.readUser(id).subscribe(user => {
+      this.user = user;
+    });
   }
 
   handleFileInput(files: FileList) {
@@ -50,11 +56,26 @@ export class UserEditComponent implements OnInit {
     this.user.apps.splice(index, 1);
   }
 
+  setAppEditable(index: number) {
+    const app = this.user.apps[index];
+    app.editable = true;
+  }
+
+  setAppNonEditable(index: number) {
+    const app = this.user.apps[index];
+    app.editable = false;
+  }
+
   addApp() {
     this.user.apps.push({
       _id: '',
       name: '',
-      avatar: ''
+      avatar: '',
+      editable: true
     });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

@@ -16,7 +16,7 @@
         <tbody>
         <tr *ngFor="let user of users" routerLink="/user-detail/{{user._id}}">
           <td>{{user.name}}</td>
-          <td><img [src]="user.avatar | avatar" [alt]="user.avatar | avatar" class="avatar-small"/></td>
+          <td class="centered"><img [src]="user.avatar | avatar" [alt]="user.avatar | avatar" class="avatar-small"/></td>
           <td>{{user.birthday | age}}</td>
           <td>{{user.country}}</td>
           <td>{{user.appsCount}}</td>

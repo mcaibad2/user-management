@@ -2,20 +2,18 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
-      <h4><span class="glyphicon glyphicon-chevron-left"></span>{{user.name}}</h4>
+      <h4><span class="glyphicon glyphicon-chevron-left" (click)="goBack()"></span>{{user.name}}</h4>
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-lg-5">
             <div class="form-group">
-              <label for="name">Avatar:</label>
-              <br/>
               <img [src]="user.avatar | avatar" [alt]="user.avatar | avatar" class="avatar-large"/>
               <br/>
               <br/>
               <input id="avatar"
                      type="file"
                      name="avatar"
-                     [(ngModel)]="user.avatar"
+                     ngModel
                      (change)="handleFileInput($event.target.files)"
                      #avatar="ngModel">
             </div>
@@ -48,7 +46,7 @@
                      #birthday="ngModel">
             </div>
           </div>
-          <div class="col-lg-8">
+          <div class="col-lg-7 text-right">
             <table class="table table-bordered">
               <thead>
               <tr>
@@ -66,10 +64,10 @@
                 </td>
               </tr>
               <tr *ngFor="let app of user.apps; let i = index">
-                <td>
+                <td *ngIf="!app.editable" class="centered">
                   <img ng-if="app.avatar" [src]="app.avatar|avatar" [alt]="app.avatar|avatar" class="avatar-small"/>
-                  <br />
-                  <br />
+                </td>
+                <td *ngIf="app.editable">
                   <input type="file"
                          name="avatar{{i}}"
                          [(ngModel)]="user.avatar"
@@ -77,24 +75,37 @@
                          #avatar{{i}}="ngModel"
                          style="width: 190px">
                 </td>
-                <td>
-                  <input id="name{{i}}"
-                         type="text"
+                <td *ngIf="!app.editable">
+                  <input type="text"
+                         class="form-control"
+                         name="name{{i}}"
+                         [(ngModel)]="app.name"
+                         #name{{i}}="ngModel"
+                         disabled="true">
+                </td>
+                <td *ngIf="app.editable">
+                  <input type="text"
                          class="form-control"
                          name="name{{i}}"
                          [(ngModel)]="app.name"
                          #name{{i}}="ngModel">
                 </td>
-                <td class="text-center">
+                <td class="actions centered">
                   <span class="glyphicon glyphicon-trash" (click)="removeApp(i)"></span>
+                  <span *ngIf="!app.editable" class="glyphicon glyphicon-pencil" (click)="setAppEditable(i)"></span>
+                  <span *ngIf="app.editable" class="glyphicon glyphicon-remove" (click)="setAppNonEditable(i)"></span>
                 </td>
               </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="text-right">
-          <button type="submit" class="btn btn-primary btn-md">Submit</button>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md">Submit</button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
