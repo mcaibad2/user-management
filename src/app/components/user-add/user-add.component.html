@@ -3,83 +3,103 @@
   <div class="row">
     <div class="col-lg-8">
       <h4><span class="glyphicon glyphicon-chevron-left" (click)="goBack()"></span>Add User</h4>
-      <form class="form-horizontal" #userForm="ngForm" (ngSubmit)="submitForm(userForm.value)" novalidate>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="name">Name:</label>
-          <div class="col-sm-10">
-            <input id="name"
-                   type="text"
-                   #name="ngModel"
-                   minlength="5"
-                   maxlength="10"
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="name">Avatar:</label>
+              <input id="avatar"
+                     type="file"
+                     name="avatar"
+                     [(ngModel)]="user.avatar"
+                     (change)="handleAvatarInput($event.target.files)"
+                     required
+                     #avatar="ngModel">
+            </div>
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text"
+                     class="form-control"
+                     id="name"
+                     required
+                     [(ngModel)]="user.name"
+                     name="name"
+                     #name="ngModel">
+            </div>
+
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text"
                    class="form-control"
+                   id="country"
                    required
-                   placeholder="Enter name"
-                   name="name"
-                   ngModel>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="country">Country code:</label>
-          <div class="col-sm-10">
-            <input id="country"
-                   type="text"
-                   class="form-control"
-                   placeholder="Enter country code e.g. GR"
+                   [(ngModel)]="user.country"
                    name="country"
-                   ngModel>
+                   #name="ngModel">
           </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="birthday">Birthday:</label>
-          <div class="col-sm-10">
-            <input id="birthday"
-                   type="date"
+          <div class="form-group">
+            <label for="birthday">Age:</label>
+            <input type="text"
                    class="form-control"
-                   placeholder="Enter birthday"
+                   id="birthday"
+                   required
+                   [(ngModel)]="user.birthday"
                    name="birthday"
-                   ngModel>
+                   #name="ngModel">
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="birthday">Avatar:</label>
-          <div class="col-sm-10">
-            <input type="file"
-                   id="avatar"
-                   (change)="handleFileInput($event.target.files)"
-                   #fileInput>
-          </div>
+        <div class="col-lg-8">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>Icon</th>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td class="text-center">
+                <span class="glyphicon glyphicon glyphicon-plus-sign" (click)="addApp()"></span>
+              </td>
+            </tr>
+            <tr *ngFor="let app of user.apps; let i = index">
+              <td>
+                <input type="file"
+                       name="avatar{{i}}"
+                       [(ngModel)]="user.avatar"
+                       (change)="handleIconInput($event.target.files)"
+                       required
+                       #avatar{{i}}="ngModel">
+              </td>
+              <td>
+                <input id="name{{i}}"
+                       type="text"
+                       class="form-control"
+                       name="name{{i}}"
+                       [(ngModel)]="app.name"
+                       required
+                       width="150px"
+                       #name{{i}}="ngModel">
+              </td>
+              <td class="text-center">
+                <span class="glyphicon glyphicon-trash" (click)="removeApp(i)"></span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="form-group">
-          <div class="col-sm-10 col-sm-offset-2">
-            <button type="button" (click)="addApplication()">Add application</button>
-          </div>
-        </div>
-        <div class="form-group" *ngFor="let word2 of words2; let i=index" >
-          <div class="col-sm-10 col-sm-offset-2">
-            <input id="app{{i}}"
-                   type="text"
-                   class="col-sm-6"
-                   placeholder="Enter name"
-                   name="name{{i}}"
-                   ngModel>
-            <input type="file"
-                   id="icon{{i}}"
-                   class="col-sm-6"
-                   (change)="handleIcons($event.target.files)"
-                   #fileInput>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="col-lg-4">
-      <app-history></app-history>
-    </div>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+      </div>
+    </form>
   </div>
+  <div class="col-lg-4">
+    <app-history></app-history>
+  </div>
+</div>
 </div>
 <app-footer></app-footer>

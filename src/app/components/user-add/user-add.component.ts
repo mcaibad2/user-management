@@ -1,5 +1,3 @@
-import * as _ from 'lodash';
-
 import {UserService} from '../../services/user.service';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
@@ -15,7 +13,11 @@ import {User} from '../../model/user';
 export class UserAddComponent implements OnInit {
   avatar: File;
   icons: Array<File> = [];
-  // words2 = [];
+  user: User = {
+    _id: '', appsCount: 0, name: '', avatar: '', birthday: '', apps: [{
+      _id: '', avatar: '', name: ''
+    }], country: ''
+  };
 
   constructor(private userService: UserService, private router: Router, private location: Location) {
   }
@@ -23,16 +25,15 @@ export class UserAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleFileInput(files: FileList) {
+  handleAvatarInput(files: FileList) {
     this.avatar = files.item(0);
   }
 
-  handleIcons(files: FileList) {
+  handleIconInput(files: FileList) {
     this.icons.push(files.item(0));
   }
 
   submitForm(user: User) {
-    console.log(user);
     this.userService.createUser(user, this.avatar, this.icons).subscribe(
       data => {
         console.log(data);
@@ -47,7 +48,23 @@ export class UserAddComponent implements OnInit {
     this.location.back();
   }
 
-  // addApplication() {
-  //   this.words2.push({value: 'gsre'});
-  // }
+  onSubmit() {
+    console.log(JSON.stringify(this.user));
+    this.userService.createUser(this.user, this.avatar, this.icons).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['/users']);
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+  removeApp(index: number) {
+    this.user.apps.splice(index, 1);
+  }
+
+  addApp() {
+    this.user.apps.push({_id: '', name: '', avatar: ''});
+  }
 }
