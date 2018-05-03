@@ -17,7 +17,6 @@
                      name="avatar"
                      [(ngModel)]="user.avatar"
                      (change)="handleFileInput($event.target.files)"
-                     required
                      #avatar="ngModel">
             </div>
             <div class="form-group">
@@ -27,18 +26,17 @@
                      class="form-control"
                      name="name"
                      [(ngModel)]="user.name"
-                     required
                      #name="ngModel">
             </div>
             <div class="form-group">
               <label for="country">Country:</label>
-              <input id="country"
-                     type="text"
-                     class="form-control"
-                     name="country"
-                     [(ngModel)]="user.country"
-                     required
-                     #country="ngModel">
+              <select class="form-control"
+                      id="country"
+                      [(ngModel)]="user.country"
+                      name="country"
+                      #name="ngModel">
+                <option *ngFor="let country of countries" [value]="country.ccode">{{country.cname}}</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="age">Age:</label>
@@ -47,7 +45,6 @@
                      class="form-control"
                      name="birthday"
                      [(ngModel)]="user.birthday"
-                     required
                      #birthday="ngModel">
             </div>
           </div>
@@ -76,9 +73,9 @@
                   <input type="file"
                          name="avatar{{i}}"
                          [(ngModel)]="user.avatar"
-                         (change)="handleIconInput($event.target.files)"
-                         required
-                         #avatar{{i}}="ngModel">
+                         (change)="handleIconInput($event.target.files, app._id)"
+                         #avatar{{i}}="ngModel"
+                         style="width: 190px">
                 </td>
                 <td>
                   <input id="name{{i}}"
@@ -86,8 +83,6 @@
                          class="form-control"
                          name="name{{i}}"
                          [(ngModel)]="app.name"
-                         required
-                         width="150px"
                          #name{{i}}="ngModel">
                 </td>
                 <td class="text-center">

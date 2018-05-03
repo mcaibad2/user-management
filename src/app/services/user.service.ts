@@ -1,5 +1,4 @@
 ///<reference path="../model/user.ts"/>
-import * as _ from 'lodash';
 
 import {Injectable} from '@angular/core';
 import {User} from '../model/user';
@@ -26,7 +25,9 @@ export class UserService {
     formData.append('name', user.name);
     formData.append('birthday', user.birthday);
     formData.append('country', user.country);
-    formData.append('avatar', avatar, avatar.name);
+    if (avatar) {
+      formData.append('avatar', avatar, avatar.name);
+    }
     for (let i = 0; i < icons.length; i++) {
       formData.append('icons', icons[i], icons[i]['name']);
     }
@@ -67,7 +68,7 @@ export class UserService {
     return of(this.users.find(user => user._id === id));
   }
 
-  updateUser(user: User, avatar: File, icons: Map<number, File>) {
+  updateUser(user: User, avatar: File, icons: Map<string, File>) {
     console.log(`Update user with id: ${user._id}`);
     this.historyService.create(new HistoryItem(`Updated user with id: ${user._id}`, new Date()));
     const formData = new FormData();
@@ -77,16 +78,16 @@ export class UserService {
     if (avatar) {
       formData.append('avatar', avatar, avatar.name);
     }
-    // for (let i = 0; i < user.apps.length; i++) {
-    //   const app = user.apps[i];
-    //   if (icons.has(i)) {
-    //     const file = icons.get(i);
-    //     formData.append('icons', file, file.name);
-    //   } else {
-    //     formData.append('icons', app.avatar, app.avatar['name']);
-    //   }
-    //   formData.append('apps', app.name);
-    // }
+    for (let i = 0; i < user.apps.length; i++) {
+      const app = user.apps[i];
+      if (icons.has(app._id)) {
+        const file = icons.get(app._id);
+        formData.append('icons', file, file.name);
+      } else {
+        formData.append('icons', app.avatar);
+      }
+      formData.append('apps', app.name);
+    }
     return this.http.put(`http://lab.wappier.com/user/${user._id}`, formData, {
       headers: new HttpHeaders({
         'api-token': '27140e3a-0e81-4a96-8e91-162cfb69cf69'

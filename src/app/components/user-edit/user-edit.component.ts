@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {User} from '../../model/user';
+import {COUNTRIES} from '../../common/countries';
 
 @Component({
   selector: 'app-user-edit',
@@ -11,7 +12,8 @@ import {User} from '../../model/user';
 export class UserEditComponent implements OnInit {
   user: User;
   avatar: File;
-  icons = new Map<number, File>();
+  countries = COUNTRIES;
+  icons = new Map<string, File>();
 
   constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {
     const id = this.route.snapshot.paramMap.get('id');
@@ -29,8 +31,8 @@ export class UserEditComponent implements OnInit {
     this.avatar = files.item(0);
   }
 
-  handleIconInput(files: FileList, index: number) {
-    this.icons.set(index, files.item(0));
+  handleIconInput(files: FileList, id: string) {
+    this.icons.set(id, files.item(0));
   }
 
   onSubmit() {

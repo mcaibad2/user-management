@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../model/user';
 
+import {COUNTRIES} from '../../common/countries';
+
 @Component({
   selector: 'app-user-add',
   templateUrl: './user-add.component.html',
@@ -18,8 +20,11 @@ export class UserAddComponent implements OnInit {
       _id: '', avatar: '', name: ''
     }], country: ''
   };
+  countries = COUNTRIES;
 
-  constructor(private userService: UserService, private router: Router, private location: Location) {
+  constructor(private userService: UserService,
+              private router: Router,
+              private location: Location) {
   }
 
   ngOnInit() {

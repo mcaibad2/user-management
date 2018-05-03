@@ -4,7 +4,6 @@
   cursor: pointer;
 }
 
-
 .border-right {
   border-right: 1px solid #ddd;
 }
@@ -29,4 +28,11 @@ img.avatar-small {
   height: 50px;
 }
 
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
 
