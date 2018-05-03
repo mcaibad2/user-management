@@ -17,7 +17,7 @@ export class UserAddComponent implements OnInit {
   icons: Array<File> = [];
   user: User = {
     _id: '', appsCount: 0, name: '', avatar: '', birthday: '', apps: [{
-      _id: '', avatar: '', name: ''
+      _id: '', avatar: '', name: '', editable: false
     }], country: ''
   };
   countries = COUNTRIES;
@@ -70,6 +70,6 @@ export class UserAddComponent implements OnInit {
   }
 
   addApp() {
-    this.user.apps.push({_id: '', name: '', avatar: ''});
+    this.user.apps.push({_id: '', name: '', avatar: '', editable: false});
   }
 }
