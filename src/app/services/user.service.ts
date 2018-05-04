@@ -63,22 +63,22 @@ export class UserService {
     console.log(`Update user with id: ${user._id}`);
     this.historyService.create(new HistoryItem(`Updated user with id: ${user._id}`, new Date()));
     const requests = [];
-    // let formData = new FormData();
-    // formData.append('name', user.name);
-    // formData.append('birthday', user.birthday);
-    // formData.append('country', user.country);
-    // if (avatar) {
-    //   formData.append('avatar', avatar, avatar.name);
-    // }
-    // requests.push(this.http.put(`http://lab.wappier.com/user/${user._id}`, formData, {
-    //   headers: new HttpHeaders({
-    //     'api-token': '27140e3a-0e81-4a96-8e91-162cfb69cf69'
-    //   })
-    // }));
+    let formData = new FormData();
+    formData.append('name', user.name);
+    formData.append('birthday', user.birthday);
+    formData.append('country', user.country);
+    if (avatar) {
+      formData.append('avatar', avatar, avatar.name);
+    }
+    requests.push(this.http.put(`http://lab.wappier.com/user/${user._id}`, formData, {
+      headers: new HttpHeaders({
+        'api-token': '27140e3a-0e81-4a96-8e91-162cfb69cf69'
+      })
+    }));
     user.apps.forEach(app => {
       console.log(`Update app with id: ${app._id}`);
       this.historyService.create(new HistoryItem(`Updated app with id: ${app._id}`, new Date()));
-      const formData = new FormData();
+      formData = new FormData();
       if (icons.has(app._id)) {
         const file = icons.get(app._id);
         formData.append('icon', file, file.name);
