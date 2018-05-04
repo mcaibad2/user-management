@@ -4,6 +4,7 @@ import {UserService} from '../../services/user.service';
 import {User} from '../../model/user';
 import {COUNTRIES} from '../../common/countries';
 import {Location} from '@angular/common';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
   selector: 'app-user-edit',
@@ -42,14 +43,16 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.updateUser(this.user, this.avatar, this.icons).subscribe(
+    this.userService.updateUserAndApplications(this.user, this.avatar, this.icons).subscribe(
       data => {
         console.log(data);
+        alert(JSON.stringify(data));
         this.router.navigate(['/users']);
-      },
-      err => {
+      }, err => {
         console.log(err);
-      });
+        alert(err);
+      }
+    );
   }
 
   removeApp(index: number) {

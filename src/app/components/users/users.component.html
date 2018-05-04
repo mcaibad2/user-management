@@ -14,7 +14,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of users" routerLink="/user-detail/{{user._id}}">
+        <tr *ngFor="let user of users" routerLink="/user-detail/{{user._id}}" class="cursor">
           <td>{{user.name}}</td>
           <td class="centered"><img [src]="user.avatar | avatar" [alt]="user.avatar | avatar" class="avatar-small"/></td>
           <td>{{user.birthday | age}}</td>

@@ -69,10 +69,10 @@
                 </td>
                 <td *ngIf="app.editable">
                   <input type="file"
-                         name="avatar{{i}}"
-                         [(ngModel)]="user.avatar"
+                         name="icon{{i}}"
+                         ngModel
                          (change)="handleIconInput($event.target.files, app._id)"
-                         #avatar{{i}}="ngModel"
+                         #icon{{i}}="ngModel"
                          style="width: 190px">
                 </td>
                 <td *ngIf="!app.editable">
